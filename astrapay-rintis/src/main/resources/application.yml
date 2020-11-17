@@ -1,0 +1,88 @@
+spring:
+  profiles:
+    active: dev #production or dev
+
+---
+server:
+  port: 8531
+  servlet:
+    context-path: /rintis
+spring:
+  profiles: dev
+
+
+---
+
+logging:
+  file:
+    #    name: rintis.log
+    name: /opt/tomcat/webapps/rintis-engine/WEB-INF/classes/log/rintis.log
+  level:
+    org:
+      hibernate:
+        cache: DEBUG
+      springframework.web: DEBUG
+    com:
+      astrapay.rintis: DEBUG
+
+message-type:
+  request-check-status: "0200"
+  request-payment-credit: "0200"
+  request-inquiry-mpan: "0200"
+  financial-transaction-response : "0210"
+  request-logon-logoff: "0800"
+  response-logon-logoff: "0810"
+
+transaction-code:
+  payment-credit: "26"
+  check-status: "36"
+  inquiry-mpan: "37"
+  refund: "20"
+
+from-account-type:
+  savings: "10"
+
+to-account-type:
+  unspecified: "00"
+
+convenience-fee:
+  credit: "C"
+
+additional-data:
+  product-indicator: "PI04Q001"
+  mpm-code: "Q001"
+  customer-data: "CD"
+  merchant-criteria: "MC"
+
+network-management:
+  data: "0176011001112N003602"
+  information-code:
+    logon : "001"
+    logoff: "002"
+    cutover: "201"
+    echotest: "301"
+
+
+socket-server:
+  address: "localhost"
+  port: 10002
+
+greet-client-socket:
+  address: "10.126.205.26" #should be rintis hostname
+  port: 2505
+greet-server-socket:
+  address: "localhost"
+  port: 2505
+
+tcp:
+  server:
+    host: "localhost" # should be astrapay-rintis hostname
+    port: 2505 #should be astrapay-rintis port
+  client:
+    host: "10.126.205.26" #should be rintis hostname
+    port: 2505 #should be rintis port
+    timeout: 60000
+    connection:
+      poolSize: 50
+
+
